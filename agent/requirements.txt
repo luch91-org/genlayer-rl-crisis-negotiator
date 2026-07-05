@@ -1,0 +1,7 @@
+# Requires Python >= 3.12 (genlayer-py imports collections.abc.Buffer, added in 3.12).
+# >=0.18 needed for genlayer_py.chains.testnet_bradbury (absent in 0.8.x).
+genlayer-py>=0.18.0
+matplotlib>=3.8
+pytest>=8.0
+black>=24.0
+isort>=5.13

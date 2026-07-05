@@ -1,0 +1,4 @@
+episode=1 reward=10.000 rolling_avg=10.000 epsilon=0.8000 reason='Dispatching supply kits to an already evacuated zone is a po'
+episode=2 reward=12.000 rolling_avg=11.000 epsilon=0.6400 reason='Zone B is stable, so sending 1 supply kit is reasonably effi'
+episode=3 reward=23.000 rolling_avg=15.000 epsilon=0.5120 reason='Dispatching 1 supply kit to the only non-evacuated stable zo'
+Training complete: 3 episodes in 463.6s, env=genlayer, states_seen=4, final_rolling_avg=15.000, final_epsilon=0.5120

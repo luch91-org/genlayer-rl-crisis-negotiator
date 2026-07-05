@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # genlayer-py (>=0.18) requires Python >=3.12 in its package metadata,
+      # so pip refuses to install it on older runners. CI runs entirely
+      # against MockEnv (agent/env.py imports genlayer_py lazily, only inside
+      # GenLayerEnv), but the dependency install alone needs 3.12.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r agent/requirements.txt
+
+      - name: genvm-lint (best effort)
+        run: |
+          if command -v genvm-lint >/dev/null 2>&1; then
+            genvm-lint check contracts/
+          else
+            echo "genvm-lint not found on PATH -- skipping. As of this writing it is not" \
+                 "published as a standalone PyPI package; it ships as part of GenLayer" \
+                 "tooling (see docs.genlayer.com). Install it locally to get real coverage."
+          fi
+
+      - name: pytest
+        run: pytest tests/ -v
+
+      - name: Black (check mode)
+        run: black --check .
+
+      - name: isort (check mode)
+        run: isort --check-only .
