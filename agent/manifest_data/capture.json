@@ -1,0 +1,39 @@
+{
+  "tx_hash": "0xe32e2fb4c87777c4f360816824e1181b7dced9f7fde04f2a84361adc4bfc3803",
+  "elapsed_s": 87,
+  "status": 5,
+  "result_code": 6,
+  "leader_address": "0x20eAe82d47277F098B52F646eE790f1A6c80EbC2",
+  "leader_model": "policy:prd-gpt-5-4",
+  "leader_eq_payload": "\"{\\\"reason\\\": \\\"Drone sent to an already evacuated zone, saving few lives, wasting scarce resources, and not addressing any critical zone.\\\", \\\"score\\\": 2.0}\"",
+  "leader_result": "{\"reason\":\"Drone sent to an already evacuated zone, saving few lives, wasting scarce resources, and not addressing any critical zone.\",\"reward_x100\":200,\"round\":13}",
+  "votes_by_address": {
+    "0x20eAe82d47277F098B52F646eE790f1A6c80EbC2": "agree",
+    "0x7A49bb7014d156869a4D41Ef0ab8e03D8f407898": "disagree",
+    "0x80256F808c893d55c2b46FD2A404344381533725": "agree",
+    "0x963D57eA26C402124de9061118C588cdD59f35ea": "agree",
+    "0xcf0e260cC1fA2231242E50635100Be4d6579F29B": "disagree"
+  },
+  "validators": [
+    {
+      "address": "0x80256F808c893d55c2b46FD2A404344381533725",
+      "model": "policy:prd-kimi",
+      "vote": "agree"
+    },
+    {
+      "address": "0x963D57eA26C402124de9061118C588cdD59f35ea",
+      "model": "policy:prd-gpt-5-4",
+      "vote": "agree"
+    },
+    {
+      "address": "0xcf0e260cC1fA2231242E50635100Be4d6579F29B",
+      "model": "policy:prd-mistral",
+      "vote": "disagree"
+    },
+    {
+      "address": "0x7A49bb7014d156869a4D41Ef0ab8e03D8f407898",
+      "model": "policy:prd-qwen",
+      "vote": "disagree"
+    }
+  ]
+}
