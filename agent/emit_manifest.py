@@ -56,6 +56,11 @@ CONFIG = {
         '{"type":"dispatch","zone":"zone_a","resource":"drones"}',
     ],
     "capture_action": {"id": "dispatch_drones_a", "label": "send drones to zone A"},
+    "rollout": {
+        "env_seed": 7,
+        "agent_seed": 0,
+        "state_keys": ["resources", "zone_status", "round"],
+    },
 }
 
 SCHEMA_VERSION = "1.0"
@@ -275,6 +280,94 @@ def build_replay_run() -> dict | None:
     }
 
 
+def _rollout_action_meta(action: dict) -> tuple[str, str]:
+    """A stable id and a human label for a rollout action, derived from the
+    action dict alone so it works across every domain's action shape."""
+    name = str(action.get("_name") or action.get("type") or "action")
+    words = name.replace("_", " ")
+    tid = action.get("_template_id")
+    if tid is not None:
+        return f"{name}_{tid}", f"{words} {int(tid) + 1}"
+    zone = action.get("zone")
+    resource = action.get("resource")
+    if zone and resource:
+        letter = str(zone).rsplit("_", 1)[-1].upper()
+        return f"{name}_{resource}_{zone}", f"{resource} to zone {letter}"
+    if zone:
+        letter = str(zone).rsplit("_", 1)[-1].upper()
+        return f"{name}_{zone}", f"{words} zone {letter}"
+    return name, words
+
+
+def _rollout_args(action: dict) -> dict:
+    """Compact, JSON-friendly args: public scalar fields only, dropping long
+    free text (proposal/hypothesis bodies) that would bloat the manifest."""
+    out: dict = {}
+    for k, v in action.items():
+        if k.startswith("_"):
+            continue
+        if isinstance(v, str) and len(v) > 40:
+            continue
+        out[k] = v
+    return out
+
+
+def _rollout_state(state: dict, keys: list[str]) -> dict:
+    """Whitelist the display-relevant keys for the world-state panel. This is a
+    presentation filter, not fabrication: every value is the real state."""
+    return {k: state[k] for k in keys if k in state}
+
+
+def build_rollout_run() -> dict | None:
+    """Replay the trained policy through MockEnv deterministically, capturing
+    full per-step world state. This is the only run that carries a stepped
+    world state for the control room, and it is reproducible from the committed
+    q_table.json and the seeds in CONFIG. Nothing here touches the chain."""
+    cfg = CONFIG.get("rollout")
+    if not cfg:
+        return None
+    q_path = REPO_ROOT / "agent" / "q_table.json"
+    if not q_path.exists():
+        return None
+
+    from agent.agent import QLearningAgent
+    from agent.env import MockEnv
+
+    keys = cfg.get("state_keys", [])
+    env = MockEnv(seed=cfg["env_seed"])
+    state = env.reset()
+    agent = QLearningAgent(seed=cfg["agent_seed"])
+    agent.load(q_path)
+
+    steps: list[dict] = []
+    for i in range(env.max_steps):
+        before = _rollout_state(state, keys)
+        action = agent.best_action(state)
+        reward, reason, nxt = env.step(action)
+        aid, alabel = _rollout_action_meta(action)
+        steps.append(
+            {
+                "i": i,
+                "action": {"id": aid, "label": alabel, "args": _rollout_args(action)},
+                "state_before": before,
+                "state_after": _rollout_state(nxt, keys),
+                "reward": round(float(reward), 2),
+                "reward_kind": "deterministic",
+                "reason": reason,
+            }
+        )
+        state = nxt
+
+    if not steps:
+        return None
+    return {
+        "id": "policy-rollout",
+        "mode": "mock",
+        "label": "Trained policy, deterministic replay",
+        "episodes": [{"i": 1, "steps": steps}],
+    }
+
+
 def build_manifest() -> dict:
     principle = getattr(logic, "REWARD_EQUIVALENCE_PRINCIPLE", "")
     tolerance = _tolerance_from(principle)
@@ -283,6 +376,9 @@ def build_manifest() -> dict:
     cap = load_capture()
 
     runs = []
+    rollout_run = build_rollout_run()
+    if rollout_run:
+        runs.append(rollout_run)
     consensus_run = build_consensus_run(cap, tolerance)
     if consensus_run:
         runs.append(consensus_run)
