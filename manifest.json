@@ -9,10 +9,10 @@
   },
   "provenance": {
     "repo": "genlayer-rl-crisis-negotiator",
-    "commit": "1fd8b52",
+    "commit": "ebe80ad",
     "sdk": "genlayer-py >=0.18.0",
     "runner_pin": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
-    "generated_at": "2026-07-06T13:56:54.256167+00:00"
+    "generated_at": "2026-07-07T11:25:20.866625+00:00"
   },
   "contract": {
     "address": "0xE0CBc71F7a3e87523F4A3833d4DdBE8a47595220",
@@ -8042,6 +8042,339 @@
     }
   },
   "runs": [
+    {
+      "id": "policy-rollout",
+      "mode": "mock",
+      "label": "Trained policy, deterministic replay",
+      "episodes": [
+        {
+          "i": 1,
+          "steps": [
+            {
+              "i": 0,
+              "action": {
+                "id": "dispatch_supply_kits_zone_a",
+                "label": "supply_kits to zone A",
+                "args": {
+                  "type": "dispatch",
+                  "zone": "zone_a",
+                  "resource": "supply_kits",
+                  "quantity": 1
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 5,
+                  "ambulances": 3,
+                  "supply_kits": 20
+                },
+                "zone_status": {
+                  "zone_a": "critical",
+                  "zone_b": "moderate",
+                  "zone_c": "stable"
+                },
+                "round": 0
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 5,
+                  "ambulances": 3,
+                  "supply_kits": 19
+                },
+                "zone_status": {
+                  "zone_a": "moderate",
+                  "zone_b": "moderate",
+                  "zone_c": "stable"
+                },
+                "round": 1
+              },
+              "reward": 9.35,
+              "reward_kind": "deterministic",
+              "reason": "dispatched supply_kits to critical zone"
+            },
+            {
+              "i": 1,
+              "action": {
+                "id": "dispatch_drones_zone_b",
+                "label": "drones to zone B",
+                "args": {
+                  "type": "dispatch",
+                  "zone": "zone_b",
+                  "resource": "drones",
+                  "quantity": 1
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 5,
+                  "ambulances": 3,
+                  "supply_kits": 19
+                },
+                "zone_status": {
+                  "zone_a": "moderate",
+                  "zone_b": "moderate",
+                  "zone_c": "stable"
+                },
+                "round": 1
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 19
+                },
+                "zone_status": {
+                  "zone_a": "moderate",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 2
+              },
+              "reward": 6.81,
+              "reward_kind": "deterministic",
+              "reason": "dispatched drones to moderate zone"
+            },
+            {
+              "i": 2,
+              "action": {
+                "id": "dispatch_supply_kits_zone_a",
+                "label": "supply_kits to zone A",
+                "args": {
+                  "type": "dispatch",
+                  "zone": "zone_a",
+                  "resource": "supply_kits",
+                  "quantity": 1
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 19
+                },
+                "zone_status": {
+                  "zone_a": "moderate",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 2
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 3
+              },
+              "reward": 6.36,
+              "reward_kind": "deterministic",
+              "reason": "dispatched supply_kits to moderate zone"
+            },
+            {
+              "i": 3,
+              "action": {
+                "id": "wait",
+                "label": "wait",
+                "args": {
+                  "type": "wait"
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 3
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 4
+              },
+              "reward": 8.31,
+              "reward_kind": "deterministic",
+              "reason": "waited with no critical zones left"
+            },
+            {
+              "i": 4,
+              "action": {
+                "id": "wait",
+                "label": "wait",
+                "args": {
+                  "type": "wait"
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 4
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 5
+              },
+              "reward": 7.94,
+              "reward_kind": "deterministic",
+              "reason": "waited with no critical zones left"
+            },
+            {
+              "i": 5,
+              "action": {
+                "id": "wait",
+                "label": "wait",
+                "args": {
+                  "type": "wait"
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 5
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 6
+              },
+              "reward": 8.37,
+              "reward_kind": "deterministic",
+              "reason": "waited with no critical zones left"
+            },
+            {
+              "i": 6,
+              "action": {
+                "id": "wait",
+                "label": "wait",
+                "args": {
+                  "type": "wait"
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 6
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 7
+              },
+              "reward": 9.17,
+              "reward_kind": "deterministic",
+              "reason": "waited with no critical zones left"
+            },
+            {
+              "i": 7,
+              "action": {
+                "id": "wait",
+                "label": "wait",
+                "args": {
+                  "type": "wait"
+                }
+              },
+              "state_before": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 7
+              },
+              "state_after": {
+                "resources": {
+                  "drones": 4,
+                  "ambulances": 3,
+                  "supply_kits": 18
+                },
+                "zone_status": {
+                  "zone_a": "stable",
+                  "zone_b": "stable",
+                  "zone_c": "stable"
+                },
+                "round": 8
+              },
+              "reward": 8.75,
+              "reward_kind": "deterministic",
+              "reason": "waited with no critical zones left"
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "live-capture",
       "mode": "live",
