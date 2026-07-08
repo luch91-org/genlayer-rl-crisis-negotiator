@@ -9,10 +9,10 @@
   },
   "provenance": {
     "repo": "genlayer-rl-crisis-negotiator",
-    "commit": "ebe80ad",
+    "commit": "c11a4f7",
     "sdk": "genlayer-py >=0.18.0",
     "runner_pin": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
-    "generated_at": "2026-07-07T11:25:20.866625+00:00"
+    "generated_at": "2026-07-08T08:31:39.790838+00:00"
   },
   "contract": {
     "address": "0xE0CBc71F7a3e87523F4A3833d4DdBE8a47595220",
@@ -8090,7 +8090,74 @@
               },
               "reward": 9.35,
               "reward_kind": "deterministic",
-              "reason": "dispatched supply_kits to critical zone"
+              "reason": "dispatched supply_kits to critical zone",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 45.507,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 17.854,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 166.766,
+                  "chosen": true
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 9.496,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 8.389,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 10.901,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 26.476,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 51.556,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 22.287,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 7.213,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 4.581,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 2.822,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 31.279,
+                  "chosen": false
+                }
+              ]
             },
             {
               "i": 1,
@@ -8132,7 +8199,74 @@
               },
               "reward": 6.81,
               "reward_kind": "deterministic",
-              "reason": "dispatched drones to moderate zone"
+              "reason": "dispatched drones to moderate zone",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 30.907,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 22.44,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 13.203,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 165.608,
+                  "chosen": true
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 1.08,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 44.009,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 8.875,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 35.762,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 37.117,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 10.489,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 7.143,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 2.456,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 26.952,
+                  "chosen": false
+                }
+              ]
             },
             {
               "i": 2,
@@ -8174,7 +8308,74 @@
               },
               "reward": 6.36,
               "reward_kind": "deterministic",
-              "reason": "dispatched supply_kits to moderate zone"
+              "reason": "dispatched supply_kits to moderate zone",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 0.0,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 6.545,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 167.673,
+                  "chosen": true
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 29.89,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 27.986,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 2.446,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 31.496,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 24.948,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 33.802,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 7.99,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 5.693,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 2.779,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 35.72,
+                  "chosen": false
+                }
+              ]
             },
             {
               "i": 3,
@@ -8213,7 +8414,74 @@
               },
               "reward": 8.31,
               "reward_kind": "deterministic",
-              "reason": "waited with no critical zones left"
+              "reason": "waited with no critical zones left",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 73.073,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 104.391,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 83.107,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 100.397,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 91.004,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 75.675,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 72.474,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 50.675,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 92.549,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 32.183,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 21.386,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 19.52,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 169.707,
+                  "chosen": true
+                }
+              ]
             },
             {
               "i": 4,
@@ -8252,7 +8520,74 @@
               },
               "reward": 7.94,
               "reward_kind": "deterministic",
-              "reason": "waited with no critical zones left"
+              "reason": "waited with no critical zones left",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 73.073,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 104.391,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 83.107,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 100.397,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 91.004,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 75.675,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 72.474,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 50.675,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 92.549,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 32.183,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 21.386,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 19.52,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 169.707,
+                  "chosen": true
+                }
+              ]
             },
             {
               "i": 5,
@@ -8291,7 +8626,74 @@
               },
               "reward": 8.37,
               "reward_kind": "deterministic",
-              "reason": "waited with no critical zones left"
+              "reason": "waited with no critical zones left",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 73.073,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 104.391,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 83.107,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 100.397,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 91.004,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 75.675,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 72.474,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 50.675,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 92.549,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 32.183,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 21.386,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 19.52,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 169.707,
+                  "chosen": true
+                }
+              ]
             },
             {
               "i": 6,
@@ -8330,7 +8732,74 @@
               },
               "reward": 9.17,
               "reward_kind": "deterministic",
-              "reason": "waited with no critical zones left"
+              "reason": "waited with no critical zones left",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 73.073,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 104.391,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 83.107,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 100.397,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 91.004,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 75.675,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 72.474,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 50.675,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 92.549,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 32.183,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 21.386,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 19.52,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 169.707,
+                  "chosen": true
+                }
+              ]
             },
             {
               "i": 7,
@@ -8369,7 +8838,74 @@
               },
               "reward": 8.75,
               "reward_kind": "deterministic",
-              "reason": "waited with no critical zones left"
+              "reason": "waited with no critical zones left",
+              "policy": [
+                {
+                  "action": "drones to zone A",
+                  "q": 73.073,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone A",
+                  "q": 104.391,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone A",
+                  "q": 83.107,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone B",
+                  "q": 100.397,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone B",
+                  "q": 91.004,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone B",
+                  "q": 75.675,
+                  "chosen": false
+                },
+                {
+                  "action": "drones to zone C",
+                  "q": 72.474,
+                  "chosen": false
+                },
+                {
+                  "action": "ambulances to zone C",
+                  "q": 50.675,
+                  "chosen": false
+                },
+                {
+                  "action": "supply_kits to zone C",
+                  "q": 92.549,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone A",
+                  "q": 32.183,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone B",
+                  "q": 21.386,
+                  "chosen": false
+                },
+                {
+                  "action": "evacuate zone C",
+                  "q": 19.52,
+                  "chosen": false
+                },
+                {
+                  "action": "wait",
+                  "q": 169.707,
+                  "chosen": true
+                }
+              ]
             }
           ]
         }

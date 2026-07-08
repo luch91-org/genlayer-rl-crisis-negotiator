@@ -318,6 +318,19 @@ def _rollout_state(state: dict, keys: list[str]) -> dict:
     return {k: state[k] for k in keys if k in state}
 
 
+def _rollout_policy(agent, qs, action: dict) -> list[dict] | None:
+    """The trained Q-values over every action at this state, greedy pick flagged.
+    Real numbers from the learned table; None when the state was never visited,
+    so the inspector shows a learned row rather than a fabricated one."""
+    if qs is None:
+        return None
+    chosen = next((j for j, a in enumerate(agent.actions) if a is action), -1)
+    return [
+        {"action": _rollout_action_meta(a)[1], "q": round(float(q), 3), "chosen": j == chosen}
+        for j, (a, q) in enumerate(zip(agent.actions, qs))
+    ]
+
+
 def build_rollout_run() -> dict | None:
     """Replay the trained policy through MockEnv deterministically, capturing
     full per-step world state. This is the only run that carries a stepped
@@ -339,23 +352,28 @@ def build_rollout_run() -> dict | None:
     agent = QLearningAgent(seed=cfg["agent_seed"])
     agent.load(q_path)
 
+    from agent.agent import serialize_state
+
     steps: list[dict] = []
     for i in range(env.max_steps):
         before = _rollout_state(state, keys)
+        qs = agent.q_table.get(serialize_state(state))
         action = agent.best_action(state)
         reward, reason, nxt = env.step(action)
         aid, alabel = _rollout_action_meta(action)
-        steps.append(
-            {
-                "i": i,
-                "action": {"id": aid, "label": alabel, "args": _rollout_args(action)},
-                "state_before": before,
-                "state_after": _rollout_state(nxt, keys),
-                "reward": round(float(reward), 2),
-                "reward_kind": "deterministic",
-                "reason": reason,
-            }
-        )
+        step = {
+            "i": i,
+            "action": {"id": aid, "label": alabel, "args": _rollout_args(action)},
+            "state_before": before,
+            "state_after": _rollout_state(nxt, keys),
+            "reward": round(float(reward), 2),
+            "reward_kind": "deterministic",
+            "reason": reason,
+        }
+        policy = _rollout_policy(agent, qs, action)
+        if policy:
+            step["policy"] = policy
+        steps.append(step)
         state = nxt
 
     if not steps:
